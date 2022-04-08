@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balance info</title>
+</head>
+<body>
+<h2>Balance info</h2>
+
+<form th:action="@{/balances/save}" th:object="${balance}" th:method="post">
+
+    <input type="hidden" th:field="*{idBalance}">
+
+    <table border=\"1\" width=\"100%\" cellpadding=\"5\">
+        <tr>
+            <td><label for="idCustomer">Id Customer</label></td>
+            <td>
+                <select id="idCustomer" th:field="${balance.customer.idCustomer}" name="idCustomer">
+                    <option th:each="customer : ${customers}"
+                        th:value="${customer.idCustomer}"
+                        th:text="${customer.firstName} + ' ' + ${customer.lastName}">
+
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="idTariff">Id Tariff</label></td>
+            <td>
+                <select id="idTariff" th:field="${balance.tariff.idTariff}" name="idTariff">
+                    <option th:each="tariff : ${tariffs}"
+                        th:value="${tariff.idTariff}"
+                        th:text="${tariff.title}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="balance">Balance</label></td>
+            <td><input type="text" th:field="*{balance}" id="balance"></td>
+        </tr>
+    </table>
+    <br>
+
+    <input type="submit" value="Save">
+</form>
+<br>
+
+<input type="button" value="Back" onclick="window.location.href = '/balances/main'">
+
+</body>
+</html>

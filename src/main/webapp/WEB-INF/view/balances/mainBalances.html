@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Balances</title>
+</head>
+<body>
+<h2>Balances info</h2>
+
+<table border=\"1\" width=\"100%\" cellpadding=\"5\">
+    <tr>
+        <th>Id Balance</th>
+        <th>Id Customer</th>
+        <th>Id Tariff</th>
+        <th>Balance</th>
+        <th colspan="2">Operations</th>
+    </tr>
+
+    <tr th:each="balance : ${balances}">
+        <td th:text="${balance.idBalance}"></td>
+        <td th:text="${balance.customer.firstName} + ' ' + ${balance.customer.lastName}"></td>
+        <td th:text="${balance.tariff.title}"></td>
+        <td th:text="${balance.balance}"></td>
+        <td>
+            <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
+                <button>
+                    <span>Update</span>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/balances/delete/{id}(id=${balance.idBalance})}">
+                <button>
+                    <span>Delete</span>
+                </button>
+            </a>
+        </td>
+    </tr>
+</table>
+<br>
+
+<input type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
+<br>
+<br>
+
+<input type="button" value="Back" onclick="window.location.href = '/'">
+</body>
+</html>

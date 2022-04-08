@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tariffs</title>
+</head>
+<body>
+<h2>Tariffs All</h2>
+
+<table border=\"1\" width=\"100%\" cellpadding=\"5\">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th colspan="2">Operations</th>
+    </tr>
+
+    <tr th:each="tariff : ${tariffs}">
+        <td th:text="${tariff.idTariff}"></td>
+        <td th:text="${tariff.title}"></td>
+        <td th:text="${tariff.price}"></td>
+        <td>
+            <a th:href="@{/tariffs/update/{id}(id=${tariff.idTariff})}">
+                <button>
+                    <span>Update</span>
+                </button>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/tariffs/delete/{id}(id=${tariff.idTariff})}">
+                <button>
+                    <span>Delete</span>
+                </button>
+            </a>
+        </td>
+    </tr>
+
+</table>
+<br>
+
+<input type="button" value="Add new Tariffs" onclick="window.location.href = '/tariffs/new'">
+<br>
+<br>
+
+<input type="button" value="Back" onclick="window.location.href = '/'">
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer info</title>
+</head>
+<body>
+<h2>Customer info</h2>
+
+<form th:action="@{/customers/save}" th:object="${customer}" th:method="post">
+
+    <input type="hidden" th:field="*{idCustomer}" id="idCustomer">
+
+    <table border=\"1\" width=\"100%\" cellpadding=\"5\">
+        <tr>
+            <td><label for="firstName">Name</label></td>
+            <td><input type="text" th:field="*{firstName}" id="firstName"></td>
+        </tr>
+        <tr>
+            <td><label for="lastName">Surname</label></td>
+            <td><input type="text" th:field="*{lastName}" id="lastName"></td>
+        </tr>
+        <tr>
+            <td><label for="dateBirth">Date of birth</label></td>
+            <td><input type="date" th:field="*{dateBirth}" id="dateBirth"></td>
+        </tr>
+        <tr>
+            <td><label for="mobilePhone">Mobile Phone</label></td>
+            <td><input type="tel" th:field="*{mobilePhone}" id="mobilePhone" placeholder="+375(__)___-__-__"></td>
+        </tr>
+    </table>
+    <br>
+
+    <input type="submit" value="Save">
+</form>
+<br>
+
+<input type="button" value="Back" onclick="window.location.href = '/customers/main'">
+
+</body>
+</html>

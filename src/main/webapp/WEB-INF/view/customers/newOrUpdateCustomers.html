@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Customer info</title>
+
+    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
 </head>
 <body>
 <h2>Customer info</h2>
@@ -11,7 +14,7 @@
 
     <input type="hidden" th:field="*{idCustomer}" id="idCustomer">
 
-    <table border=\"1\" width=\"100%\" cellpadding=\"5\">
+    <table class="form_table">
         <tr>
             <td><label for="firstName">Name</label></td>
             <td><input type="text" th:field="*{firstName}" id="firstName"></td>
@@ -31,11 +34,10 @@
     </table>
     <br>
 
-    <input type="submit" value="Save">
+    <input class="color green button" type="submit" value="Save">
 </form>
 <br>
 
-<input type="button" value="Back" onclick="window.location.href = '/customers/main'">
-
+<input class="color button" type="button" value="Back" onclick="window.location.href = '/customers/main'">
 </body>
 </html>

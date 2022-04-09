@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Tariff info</title>
+
+    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
 </head>
 <body>
 <h2>Tariff info</h2>
@@ -11,7 +14,7 @@
 
     <input type="hidden" th:field="*{idTariff}" id="idTariff">
 
-    <table border=\"1\" width=\"100%\" cellpadding=\"5\">
+    <table class="form_table">
         <tr>
             <td><label for="title">Title</label></td>
             <td><input type="text" th:field="*{title}" id="title"></td>
@@ -23,11 +26,10 @@
     </table>
     <br>
 
-    <input type="submit" value="Save">
+    <input class="color green button" type="submit" value="Save">
 </form>
 <br>
 
-<input type="button" value="Back" onclick="window.location.href = '/tariffs/main'">
-
+<input class="color button" type="button" value="Back" onclick="window.location.href = '/tariffs/main'">
 </body>
 </html>

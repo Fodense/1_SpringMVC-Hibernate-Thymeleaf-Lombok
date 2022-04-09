@@ -29,8 +29,14 @@ public class BalanceController {
     }
 
     @GetMapping("/main")
-    public String getAllBalances(Model model) {
-        List<Balance> balances = balanceService.getAllBalances();
+    public String getAllBalances(@RequestParam(defaultValue = "1") int page, Model model) {
+        List<Balance> balances = balanceService.getAllBalances(page);
+
+        long countAllBalances = balanceService.getCountAllBalances();
+        long countPages = (countAllBalances + 9) / 10;
+
+        model.addAttribute("page", page);
+        model.addAttribute("countPages", countPages);
 
         model.addAttribute("balances", balances);
 

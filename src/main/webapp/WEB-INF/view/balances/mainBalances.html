@@ -37,7 +37,23 @@
         </td>
     </tr>
 </table>
-<br>
+
+<div>
+    <ul>
+        <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
+            <a th:if="${page eq pageNumber}" href="#">
+                <button>
+                    <span th:text="${pageNumber}"></span>
+                </button>
+            </a>
+            <a th:if="${not (page eq pageNumber)}" th:href="@{${'/balances/main'}(page=${pageNumber}, size=${balances.size})}">
+                <button>
+                    <span th:text="${pageNumber}"></span>
+                </button>
+            </a>
+        </li>
+    </ul>
+</div>
 
 <input type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
 <br>

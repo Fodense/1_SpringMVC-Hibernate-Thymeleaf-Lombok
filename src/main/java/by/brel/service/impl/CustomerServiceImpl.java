@@ -27,6 +27,12 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
+    public List<Customer> getAllCustomers(int page) {
+        return customerDAO.getAllCustomers(page);
+    }
+
+    @Override
+    @Transactional
     public Customer findCustomerById(long id) {
         return customerDAO.findCustomerById(id);
     }
@@ -41,5 +47,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     public void deleteCustomer(long id) {
         customerDAO.deleteCustomer(id);
+    }
+
+    @Override
+    @Transactional
+    public long getCountAllCustomers() {
+        return customerDAO.getCountAllCustomers();
     }
 }

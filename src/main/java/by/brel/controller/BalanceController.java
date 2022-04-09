@@ -57,7 +57,6 @@ public class BalanceController {
 
     @PostMapping("/save")
     public String saveBalance(@ModelAttribute("balance") Balance balance) {
-        System.out.println(balance);
         balanceService.saveBalance(balance);
 
         return "redirect:/balances/main";

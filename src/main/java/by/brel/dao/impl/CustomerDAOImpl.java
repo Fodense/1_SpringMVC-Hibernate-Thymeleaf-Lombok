@@ -24,7 +24,20 @@ public class CustomerDAOImpl implements CustomerDAO {
     public List<Customer> getAllCustomers() {
         Session session = sessionFactory.getCurrentSession();
 
-        List<Customer> customerList = session.createQuery("from Customer", Customer.class).getResultList();
+        List<Customer> customerList = session.createQuery("from Customer").getResultList();
+
+        return customerList;
+    }
+
+    @Override
+    public List<Customer> getAllCustomers(int page) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List<Customer> customerList = session
+                .createQuery("from Customer", Customer.class)
+                .setFirstResult(10 * (page - 1))
+                .setMaxResults(10)
+                .list();
 
         return customerList;
     }
@@ -53,5 +66,12 @@ public class CustomerDAOImpl implements CustomerDAO {
         Query<Customer> query = session.createQuery("delete from Customer where idCustomer = :id");
         query.setParameter("id", id);
         query.executeUpdate();
+    }
+
+    @Override
+    public long getCountAllCustomers() {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createQuery("select count(*) from Customer", Long.class).getSingleResult().intValue();
     }
 }

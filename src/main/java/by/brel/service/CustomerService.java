@@ -15,5 +15,5 @@ public interface CustomerService {
 
     void deleteCustomer(long id);
 
-    long getCountAllCustomers();
+    int getCountAllCustomers();
 }

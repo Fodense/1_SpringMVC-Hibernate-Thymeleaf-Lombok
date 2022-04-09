@@ -27,6 +27,12 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
+    public List<Tariff> getAllTariffs(int page) {
+        return tariffDAO.getAllTariffs(page);
+    }
+
+    @Override
+    @Transactional
     public Tariff findTariffById(long id) {
         return tariffDAO.findTariffById(id);
     }
@@ -41,5 +47,11 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     public void deleteTariff(long id) {
         tariffDAO.deleteTariff(id);
+    }
+
+    @Override
+    @Transactional
+    public int getCountAllTariffs() {
+        return tariffDAO.getCountAllTariffs();
     }
 }

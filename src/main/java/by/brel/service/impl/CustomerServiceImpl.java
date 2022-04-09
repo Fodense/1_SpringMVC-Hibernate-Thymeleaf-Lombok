@@ -51,7 +51,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    public long getCountAllCustomers() {
+    public int getCountAllCustomers() {
         return customerDAO.getCountAllCustomers();
     }
 }

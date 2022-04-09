@@ -5,7 +5,6 @@ import by.brel.entity.Customer;
 import java.util.List;
 
 public interface CustomerDAO {
-
     List<Customer> getAllCustomers();
 
     List<Customer> getAllCustomers(int page);
@@ -16,5 +15,5 @@ public interface CustomerDAO {
 
     void deleteCustomer(long id);
 
-    long getCountAllCustomers();
+    int getCountAllCustomers();
 }

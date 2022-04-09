@@ -25,10 +25,9 @@ public class CustomerController {
         List<Customer> customerList = customerService.getAllCustomers(page);
 
         long countAllCustomers = customerService.getCountAllCustomers();
-        long countPages = countAllCustomers / 10;
+        long countPages = (countAllCustomers + 9) / 10;
 
         model.addAttribute("page", page);
-        model.addAttribute("countAllCustomers", countAllCustomers);
         model.addAttribute("countPages", countPages);
 
         model.addAttribute("customers", customerList);

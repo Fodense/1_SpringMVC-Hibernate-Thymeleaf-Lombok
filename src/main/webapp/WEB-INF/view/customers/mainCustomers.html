@@ -42,16 +42,15 @@
 
 <div>
     <ul>
-        <li th:each="pageNo : ${#numbers.sequence(1, countPages + 1)}">
-
-            <a th:if="${page eq pageNo}" href="#">
+        <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
+            <a th:if="${page eq pageNumber}" href="#">
                 <button>
-                    <span th:text="${pageNo}"></span>
+                    <span th:text="${pageNumber}"></span>
                 </button>
             </a>
-            <a th:if="${not (page eq pageNo)}" th:href="@{${'/customers/main'}(page=${pageNo}, size=${customers.size})}">
+            <a th:if="${not (page eq pageNumber)}" th:href="@{${'/customers/main'}(page=${pageNumber}, size=${customers.size})}">
                 <button>
-                    <span th:text="${pageNo}"></span>
+                    <span th:text="${pageNumber}"></span>
                 </button>
             </a>
         </li>

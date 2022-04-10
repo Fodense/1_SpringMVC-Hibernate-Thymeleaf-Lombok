@@ -21,8 +21,14 @@ public class CustomerController {
     }
 
     @GetMapping("/main")
-    public String getAllCustomers(Model model){
-        List<Customer> customerList = customerService.getAllCustomers();
+    public String getAllCustomers(@RequestParam(defaultValue = "1") int page, Model model){
+        List<Customer> customerList = customerService.getAllCustomers(page);
+
+        long countAllCustomers = customerService.getCountAllCustomers();
+        long countPages = (countAllCustomers + 9) / 10;
+
+        model.addAttribute("page", page);
+        model.addAttribute("countPages", countPages);
 
         model.addAttribute("customers", customerList);
 
@@ -30,7 +36,7 @@ public class CustomerController {
     }
 
     @GetMapping("/main/{id}")
-    public Customer getCustomerById(@PathVariable long id) {
+    public Customer getCustomerById(@PathVariable("id") long id) {
         Customer customer = customerService.findCustomerById(id);
 
         return customer;

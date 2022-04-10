@@ -3,15 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Balances</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
 </head>
+
 <body>
 <h2>Balances info</h2>
 
-<table border=\"1\" width=\"100%\" cellpadding=\"5\">
+<table class="table">
     <tr>
         <th>Id Balance</th>
-        <th>Id Customer</th>
-        <th>Id Tariff</th>
+        <th>Customer</th>
+        <th>Tariff</th>
         <th>Balance</th>
         <th colspan="2">Operations</th>
     </tr>
@@ -23,26 +30,37 @@
         <td th:text="${balance.balance}"></td>
         <td>
             <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
-                <button>
-                    <span>Update</span>
-                </button>
+                <button class="color button">Update</button>
             </a>
         </td>
         <td>
             <a th:href="@{/balances/delete/{id}(id=${balance.idBalance})}">
-                <button>
-                    <span>Delete</span>
-                </button>
+                <button class="color red button">Delete</button>
             </a>
         </td>
     </tr>
 </table>
+
+<div class="divCentre">
+    <ul class="pagination">
+        <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
+            <a class="active"
+               th:if="${page eq pageNumber}"
+               href="#"
+               th:text="${pageNumber}">
+            </a>
+            <a th:if="${not (page eq pageNumber)}"
+               th:href="@{${'/balances/main'}(page=${pageNumber}, size=${balances.size})}"
+               th:text="${pageNumber}">
+            </a>
+        </li>
+    </ul>
+</div>
+
+<input class="color green button" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
+<br>
 <br>
 
-<input type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
-<br>
-<br>
-
-<input type="button" value="Back" onclick="window.location.href = '/'">
+<input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>
 </html>

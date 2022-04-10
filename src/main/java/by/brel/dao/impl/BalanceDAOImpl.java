@@ -24,9 +24,22 @@ public class BalanceDAOImpl implements BalanceDAO {
     public List<Balance> getAllBalances() {
         Session session = sessionFactory.getCurrentSession();
 
-        List<Balance> balances = session.createQuery("from Balance").getResultList();
+        List<Balance> balances = session.createQuery("from Balance", Balance.class).getResultList();
 
         return balances;
+    }
+
+    @Override
+    public List<Balance> getAllBalances(int page) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List<Balance> balanceList = session
+                .createQuery("from Balance", Balance.class)
+                .setFirstResult(10 * (page - 1))
+                .setMaxResults(10)
+                .list();
+
+        return balanceList;
     }
 
     @Override
@@ -52,5 +65,12 @@ public class BalanceDAOImpl implements BalanceDAO {
         Query<Balance> query = session.createQuery("delete from Balance where idBalance = :id");
         query.setParameter("id", id);
         query.executeUpdate();
+    }
+
+    @Override
+    public int getCountAllBalances() {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createQuery("select count(*) from Balance", Number.class).getSingleResult().intValue();
     }
 }

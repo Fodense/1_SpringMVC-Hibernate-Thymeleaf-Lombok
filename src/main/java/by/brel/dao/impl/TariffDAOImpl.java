@@ -30,6 +30,19 @@ public class TariffDAOImpl implements TariffDAO {
     }
 
     @Override
+    public List<Tariff> getAllTariffs(int page) {
+        Session session = sessionFactory.getCurrentSession();
+
+        List<Tariff> tariffList = session
+                .createQuery("from Tariff", Tariff.class)
+                .setFirstResult(10 * (page - 1))
+                .setMaxResults(10)
+                .list();
+
+        return tariffList;
+    }
+
+    @Override
     public Tariff findTariffById(long id) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -52,5 +65,12 @@ public class TariffDAOImpl implements TariffDAO {
         Query<Tariff> query = session.createQuery("delete from Tariff where idTariff = :id");
         query.setParameter("id", id);
         query.executeUpdate();
+    }
+
+    @Override
+    public int getCountAllTariffs() {
+        Session session = sessionFactory.getCurrentSession();
+
+        return session.createQuery("select count(*) from Tariff", Number.class).getSingleResult().intValue();
     }
 }

@@ -21,10 +21,16 @@ public class TariffController {
     }
 
     @GetMapping("/main")
-    public String getAllTariffs(Model model) {
-        List<Tariff> tariffs = tariffService.getAllTariffs();
+    public String getAllTariffs(@RequestParam(defaultValue = "1") int page, Model model) {
+        List<Tariff> tariffList = tariffService.getAllTariffs(page);
 
-        model.addAttribute("tariffs", tariffs);
+        long countAllTariffs = tariffService.getCountAllTariffs();
+        long countPages = (countAllTariffs + 9) / 10;
+
+        model.addAttribute("page", page);
+        model.addAttribute("countPages", countPages);
+
+        model.addAttribute("tariffs", tariffList);
 
         return "/tariffs/mainTariffs";
     }
@@ -63,5 +69,4 @@ public class TariffController {
 
         return "redirect:/tariffs/main";
     }
-
 }

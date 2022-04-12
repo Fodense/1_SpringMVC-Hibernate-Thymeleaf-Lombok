@@ -8,6 +8,6 @@ public class DefaultController {
 
     @GetMapping("/")
     public String getMainView() {
-        return "index";
+        return "/index";
     }
 }

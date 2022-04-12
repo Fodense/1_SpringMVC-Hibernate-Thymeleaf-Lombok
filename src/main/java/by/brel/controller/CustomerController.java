@@ -36,10 +36,12 @@ public class CustomerController {
     }
 
     @GetMapping("/main/{id}")
-    public Customer getCustomerById(@PathVariable("id") long id) {
+    public String getCustomerById(@PathVariable("id") long id, Model model) {
         Customer customer = customerService.findCustomerById(id);
 
-        return customer;
+        model.addAttribute("customer", customer);
+
+        return "/customers/newOrUpdateCustomers";
     }
 
     @GetMapping("/new")

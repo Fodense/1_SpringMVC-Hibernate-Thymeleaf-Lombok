@@ -44,10 +44,18 @@ public class BalanceController {
     }
 
     @GetMapping("/main/{id}")
-    public Balance getBalancesById(@PathVariable("id") long id) {
+    public String getBalancesById(@PathVariable("id") long id, Model model) {
         Balance balance = balanceService.findBalanceById(id);
 
-        return balance;
+        List<Customer> customers = customerService.getAllCustomers();
+        List<Tariff> tariffs = tariffService.getAllTariffs();
+
+        model.addAttribute("customers", customers);
+        model.addAttribute("tariffs", tariffs);
+
+        model.addAttribute("balance", balance);
+
+        return "/balances/newOrUpdateBalances";
     }
 
     @GetMapping("/new")

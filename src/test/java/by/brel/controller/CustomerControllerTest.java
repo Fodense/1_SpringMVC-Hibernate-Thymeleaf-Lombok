@@ -54,11 +54,11 @@ class CustomerControllerTest {
     @Test
     void saveCustomer() throws Exception {
         mockMvc.perform(post("/customers/save")
-                .param("idCustomer", String.valueOf(1L))
-                .param("firstName", "Test")
-                .param("lastName", "Test")
-                .param("dateBirth", "1990-09-09")
-                .param("mobilePhone", "+375291111111"))
+                        .param("idCustomer", String.valueOf(1L))
+                        .param("firstName", "Test")
+                        .param("lastName", "Test")
+                        .param("dateBirth", "1990-09-09")
+                        .param("mobilePhone", "+375291111111"))
                 .andExpect(status().isMovedTemporarily())
                 .andExpect(redirectedUrl("/customers/main"));
     }

@@ -39,6 +39,21 @@ class CustomerServiceImplTest {
     }
 
     @Test
+    void testGetAllCustomersPage() {
+        List<Customer> customers = new ArrayList<>();
+        customers.add(new Customer());
+        customers.add(new Customer());
+
+        when(customerDAO.getAllCustomers(1)).thenReturn(customers);
+
+        List<Customer> customerList = customerServiceImpl.getAllCustomers(1);
+
+        assertEquals(2, customerList.size());
+
+        verify(customerDAO, times(1)).getAllCustomers(1);
+    }
+
+    @Test
     void findCustomerById() {
         when(customerDAO.findCustomerById(1L)).thenReturn(new Customer());
 

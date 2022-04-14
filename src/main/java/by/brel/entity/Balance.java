@@ -17,11 +17,11 @@ public class Balance {
     @Column(name = "balance")
     private double balance;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_customer")
     private Customer customer;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_tariff")
     private Tariff tariff;
 }

@@ -21,19 +21,27 @@ public class TariffController {
     }
 
     @GetMapping("/main")
-    public String getAllTariffs(Model model) {
-        List<Tariff> tariffs = tariffService.getAllTariffs();
+    public String getAllTariffs(@RequestParam(defaultValue = "1") int page, Model model) {
+        List<Tariff> tariffList = tariffService.getAllTariffs(page);
 
-        model.addAttribute("tariffs", tariffs);
+        long countAllTariffs = tariffService.getCountAllTariffs();
+        long countPages = (countAllTariffs + 9) / 10;
+
+        model.addAttribute("page", page);
+        model.addAttribute("countPages", countPages);
+
+        model.addAttribute("tariffs", tariffList);
 
         return "/tariffs/mainTariffs";
     }
 
     @GetMapping("/main/{id}")
-    public Tariff getTariffById(@PathVariable("id") long id) {
+    public String getTariffById(@PathVariable("id") long id, Model model) {
         Tariff tariff = tariffService.findTariffById(id);
 
-        return tariff;
+        model.addAttribute("tariff", tariff);
+
+        return "/tariffs/newOrUpdateTariffs";
     }
 
     @GetMapping("/new")
@@ -42,7 +50,7 @@ public class TariffController {
     }
 
     @PostMapping("/save")
-    public String saveTariff(Tariff tariff) {
+    public String saveTariff(@ModelAttribute("customer") Tariff tariff) {
         tariffService.saveTariff(tariff);
 
         return "redirect:/tariffs/main";
@@ -63,5 +71,4 @@ public class TariffController {
 
         return "redirect:/tariffs/main";
     }
-
 }

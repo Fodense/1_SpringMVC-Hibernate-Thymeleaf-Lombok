@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Balance info</title>
+
+    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
 </head>
 <body>
 <h2>Balance info</h2>
@@ -11,7 +14,7 @@
 
     <input type="hidden" th:field="*{idBalance}">
 
-    <table border=\"1\" width=\"100%\" cellpadding=\"5\">
+    <table class="form_table">
         <tr>
             <td><label for="idCustomer">Id Customer</label></td>
             <td>
@@ -42,11 +45,11 @@
     </table>
     <br>
 
-    <input type="submit" value="Save">
+    <input class="color green button" type="submit" value="Save">
 </form>
 <br>
 
-<input type="button" value="Back" onclick="window.location.href = '/balances/main'">
+<input class="color button" type="button" value="Back" onclick="window.location.href = '/balances/main'">
 
 </body>
 </html>

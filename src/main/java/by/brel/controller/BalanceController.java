@@ -29,8 +29,14 @@ public class BalanceController {
     }
 
     @GetMapping("/main")
-    public String getAllBalances(Model model) {
-        List<Balance> balances = balanceService.getAllBalances();
+    public String getAllBalances(@RequestParam(defaultValue = "1") int page, Model model) {
+        List<Balance> balances = balanceService.getAllBalances(page);
+
+        long countAllBalances = balanceService.getCountAllBalances();
+        long countPages = (countAllBalances + 9) / 10;
+
+        model.addAttribute("page", page);
+        model.addAttribute("countPages", countPages);
 
         model.addAttribute("balances", balances);
 
@@ -38,10 +44,18 @@ public class BalanceController {
     }
 
     @GetMapping("/main/{id}")
-    public Balance getBalancesById(@PathVariable("id") long id) {
+    public String getBalancesById(@PathVariable("id") long id, Model model) {
         Balance balance = balanceService.findBalanceById(id);
 
-        return balance;
+        List<Customer> customers = customerService.getAllCustomers();
+        List<Tariff> tariffs = tariffService.getAllTariffs();
+
+        model.addAttribute("customers", customers);
+        model.addAttribute("tariffs", tariffs);
+
+        model.addAttribute("balance", balance);
+
+        return "/balances/newOrUpdateBalances";
     }
 
     @GetMapping("/new")
@@ -57,7 +71,6 @@ public class BalanceController {
 
     @PostMapping("/save")
     public String saveBalance(@ModelAttribute("balance") Balance balance) {
-        System.out.println(balance);
         balanceService.saveBalance(balance);
 
         return "redirect:/balances/main";

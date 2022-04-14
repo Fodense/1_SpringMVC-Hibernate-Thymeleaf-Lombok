@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Customers</title>
+
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
 </head>
+
 <body>
 <h2>Customers Main View</h2>
 
-<table border=\"1\" width=\"100%\" cellpadding=\"5\">
+<table class="table">
     <tr>
         <th>ID</th>
         <th>Name</th>
@@ -25,26 +32,37 @@
         <td th:text="${customer.mobilePhone}"></td>
         <td>
             <a th:href="@{/customers/update/{id}(id=${customer.idCustomer})}">
-                <button>
-                    <span>Update</span>
-                </button>
+                <button class="color button">Update</button>
             </a>
         </td>
         <td>
             <a th:href="@{/customers/delete/{id}(id=${customer.idCustomer})}">
-                <button>
-                    <span>Delete</span>
-                </button>
+                <button class="color red button">Delete</button>
             </a>
         </td>
     </tr>
 </table>
+
+<div class="divCentre">
+    <ul class="pagination">
+        <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
+            <a class="active"
+               th:if="${page eq pageNumber}"
+               href="#"
+               th:text="${pageNumber}">
+            </a>
+            <a th:if="${not (page eq pageNumber)}"
+               th:href="@{${'/customers/main'}(page=${pageNumber}, size=${customers.size})}"
+               th:text="${pageNumber}">
+            </a>
+        </li>
+    </ul>
+</div>
+
+<input class="color green button" type="button" value="Add new Customers" onclick="window.location.href = '/customers/new'">
+<br>
 <br>
 
-<input type="button" value="Add new Customers" onclick="window.location.href = '/customers/new'">
-<br>
-<br>
-
-<input type="button" value="Back" onclick="window.location.href = '/'">
+<input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>
 </html>

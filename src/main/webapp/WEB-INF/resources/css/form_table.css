@@ -1,0 +1,18 @@
+.form_table {
+    width: 400px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+
+.form_table td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.form_table input {
+    width: 97%;
+}
+
+.form_table select {
+    width: 100%;
+}

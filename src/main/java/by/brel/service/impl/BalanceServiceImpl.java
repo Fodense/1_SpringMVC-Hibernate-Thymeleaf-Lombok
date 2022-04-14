@@ -27,6 +27,12 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     @Transactional
+    public List<Balance> getAllBalances(int page) {
+        return balanceDAO.getAllBalances(page);
+    }
+
+    @Override
+    @Transactional
     public Balance findBalanceById(long id) {
         return balanceDAO.findBalanceById(id);
     }
@@ -41,5 +47,11 @@ public class BalanceServiceImpl implements BalanceService {
     @Transactional
     public void deleteBalance(long id) {
         balanceDAO.deleteBalance(id);
+    }
+
+    @Override
+    @Transactional
+    public int getCountAllBalances() {
+        return balanceDAO.getCountAllBalances();
     }
 }

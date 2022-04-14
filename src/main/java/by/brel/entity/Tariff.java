@@ -1,6 +1,7 @@
 package by.brel.entity;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Tariff {
     @Column(name = "price")
     private double price;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private List<Balance> balances;
 }

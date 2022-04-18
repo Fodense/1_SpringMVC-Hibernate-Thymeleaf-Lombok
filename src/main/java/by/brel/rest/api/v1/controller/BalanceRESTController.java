@@ -15,8 +15,8 @@ public class BalanceRESTController {
     private BalanceService balanceService;
 
     @GetMapping("/balances")
-    public List<Balance> getAllBalances(@RequestParam(defaultValue = "1") int page) {
-        return balanceService.getAllBalances(page);
+    public List<Balance> getAllBalances() {
+        return balanceService.getAllBalances();
     }
 
     @GetMapping("/balances/{id}")

@@ -15,8 +15,8 @@ public class TariffRESTController {
     private TariffService tariffService;
 
     @GetMapping("/tariffs")
-    public List<Tariff> getAllTariffs(@RequestParam(defaultValue = "1") int page) {
-        return tariffService.getAllTariffs(page);
+    public List<Tariff> getAllTariffs() {
+        return tariffService.getAllTariffs();
     }
 
     @GetMapping("/tariffs/{id}")

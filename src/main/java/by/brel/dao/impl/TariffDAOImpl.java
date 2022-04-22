@@ -37,7 +37,7 @@ public class TariffDAOImpl implements TariffDAO {
                 .createQuery("from Tariff", Tariff.class)
                 .setFirstResult(10 * (page - 1))
                 .setMaxResults(10)
-                .list();
+                .getResultList();
 
         return tariffList;
     }

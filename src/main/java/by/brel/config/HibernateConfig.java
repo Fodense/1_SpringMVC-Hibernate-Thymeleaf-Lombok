@@ -1,10 +1,6 @@
 package by.brel.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
-import org.springframework.cache.support.SimpleCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,13 +10,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
-import java.util.Arrays;
 import java.util.Properties;
 
 @Configuration
 @ComponentScan("by.brel")
 @EnableTransactionManagement
-@EnableCaching
 public class HibernateConfig {
 
     @Bean
@@ -63,20 +57,5 @@ public class HibernateConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
         return transactionManager;
-    }
-
-    @Bean
-    public CacheManager cacheManager() {
-        SimpleCacheManager cacheManager = new SimpleCacheManager();
-        cacheManager.setCaches(Arrays.asList(
-                new ConcurrentMapCache("customers"),
-                new ConcurrentMapCache("customer"),
-                new ConcurrentMapCache("tariffs"),
-                new ConcurrentMapCache("tariff"),
-                new ConcurrentMapCache("balances"),
-                new ConcurrentMapCache("balance"))
-        );
-
-        return cacheManager;
     }
 }

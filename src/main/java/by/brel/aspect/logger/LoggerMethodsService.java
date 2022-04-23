@@ -2,6 +2,7 @@ package by.brel.aspect.logger;
 
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
@@ -65,5 +66,10 @@ public class LoggerMethodsService {
         log.info("Удалено!");
 
         return target;
+    }
+
+    @AfterReturning(value = "by.brel.aspect.PointCuts.pointCutLoggerFindById()", returning = "result")
+    public void checkMethodFindById(Object result) {
+        log.info(result.toString());
     }
 }

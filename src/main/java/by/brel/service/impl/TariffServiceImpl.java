@@ -41,6 +41,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "tariff", key = "#id")
+    @LogExecutionTime
     public Tariff findTariffById(long id) {
         return tariffDAO.findTariffById(id);
     }
@@ -59,6 +60,7 @@ public class TariffServiceImpl implements TariffService {
             @CacheEvict(cacheNames = "tariff", key = "#id"),
             @CacheEvict(cacheNames = "tariffs", allEntries = true)
     })
+    @LogExecutionTime
     public void deleteTariff(long id) {
         tariffDAO.deleteTariff(id);
     }
@@ -66,6 +68,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "tariffs")
+    @LogExecutionTime
     public int getCountAllTariffs() {
         return tariffDAO.getCountAllTariffs();
     }

@@ -30,4 +30,13 @@ public class Tariff {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "tariff", cascade = CascadeType.ALL)
     private List<Balance> balances;
+
+    @Override
+    public String toString() {
+        return "Tariff{" +
+                "idTariff=" + idTariff +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

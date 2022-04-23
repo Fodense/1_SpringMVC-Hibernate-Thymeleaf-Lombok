@@ -41,6 +41,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "balance", key = "#id")
+    @LogExecutionTime
     public Balance findBalanceById(long id) {
         return balanceDAO.findBalanceById(id);
     }
@@ -59,6 +60,7 @@ public class BalanceServiceImpl implements BalanceService {
             @CacheEvict(cacheNames = "balance", key = "#id"),
             @CacheEvict(cacheNames = "balances", allEntries = true)
     })
+    @LogExecutionTime
     public void deleteBalance(long id) {
         balanceDAO.deleteBalance(id);
     }
@@ -66,6 +68,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "balances")
+    @LogExecutionTime
     public int getCountAllBalances() {
         return balanceDAO.getCountAllBalances();
     }

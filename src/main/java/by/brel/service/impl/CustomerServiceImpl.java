@@ -41,6 +41,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "customer", key = "#id")
+    @LogExecutionTime
     public Customer findCustomerById(long id) {
         return customerDAO.findCustomerById(id);
     }
@@ -59,6 +60,7 @@ public class CustomerServiceImpl implements CustomerService {
                     @CacheEvict(cacheNames = "customer", key = "#id"),
                     @CacheEvict(cacheNames = "customers", allEntries = true)
     })
+    @LogExecutionTime
     public void deleteCustomer(long id) {
         customerDAO.deleteCustomer(id);
     }
@@ -66,6 +68,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "customers")
+    @LogExecutionTime
     public int getCountAllCustomers() {
         return customerDAO.getCountAllCustomers();
     }

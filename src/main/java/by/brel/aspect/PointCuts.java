@@ -14,6 +14,9 @@ public class PointCuts {
     @Pointcut("execution(* by.brel.service.impl.*.delete*(..))")
     public void pointCutLoggerDelete() {}
 
+    @Pointcut("execution(* by.brel.service.impl.*.find*(..))")
+    public void pointCutLoggerFindById() {}
+
     @Pointcut("execution(* by.brel.rest.api.v1.controller.*.getAll*(..))")
     public void pointCutLoggerRESTGetAllBalances() {}
 }

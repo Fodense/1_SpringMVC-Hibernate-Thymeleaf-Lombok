@@ -1,12 +1,16 @@
 package by.brel.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "balances")
 @Data
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Balance {
 
     @Id
@@ -17,11 +21,11 @@ public class Balance {
     @Column(name = "balance")
     private double balance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_customer")
     private Customer customer;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "id_tariff")
     private Tariff tariff;
 }

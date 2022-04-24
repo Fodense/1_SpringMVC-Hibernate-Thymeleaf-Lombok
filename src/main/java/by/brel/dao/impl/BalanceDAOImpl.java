@@ -37,7 +37,7 @@ public class BalanceDAOImpl implements BalanceDAO {
                 .createQuery("from Balance", Balance.class)
                 .setFirstResult(10 * (page - 1))
                 .setMaxResults(10)
-                .list();
+                .getResultList();
 
         return balanceList;
     }

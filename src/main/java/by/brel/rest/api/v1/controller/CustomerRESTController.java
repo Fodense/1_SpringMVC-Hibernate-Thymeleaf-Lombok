@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 @AllArgsConstructor
 public class CustomerRESTController {
 
     private final CustomerService customerService;
 
     @GetMapping("/customers")
-    public List<Customer> getAllCustomers(@RequestParam(defaultValue = "1") int page){
-        return customerService.getAllCustomers(page);
+    public List<Customer> getAllCustomers(){
+        return customerService.getAllCustomers();
     }
 
     @GetMapping("/customers/{id}")

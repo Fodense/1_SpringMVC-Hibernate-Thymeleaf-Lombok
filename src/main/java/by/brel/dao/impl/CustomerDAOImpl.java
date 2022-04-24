@@ -37,7 +37,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                 .createQuery("from Customer", Customer.class)
                 .setFirstResult(10 * (page - 1))
                 .setMaxResults(10)
-                .list();
+                .getResultList();
 
         return customerList;
     }

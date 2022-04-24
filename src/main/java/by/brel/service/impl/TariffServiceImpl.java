@@ -1,5 +1,6 @@
 package by.brel.service.impl;
 
+import by.brel.aspect.LogExecutionTime;
 import by.brel.dao.TariffDAO;
 import by.brel.entity.Tariff;
 import by.brel.service.TariffService;
@@ -24,6 +25,7 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
+    @LogExecutionTime
     public List<Tariff> getAllTariffs() {
         return tariffDAO.getAllTariffs();
     }
@@ -31,6 +33,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "tariffs")
+    @LogExecutionTime
     public List<Tariff> getAllTariffs(int page) {
         return tariffDAO.getAllTariffs(page);
     }
@@ -45,6 +48,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     @CacheEvict(cacheNames = "tariffs", allEntries = true)
+    @LogExecutionTime
     public void saveTariff(Tariff tariff) {
         tariffDAO.saveTariff(tariff);
     }
@@ -62,6 +66,7 @@ public class TariffServiceImpl implements TariffService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "tariffs")
+    @LogExecutionTime
     public int getCountAllTariffs() {
         return tariffDAO.getCountAllTariffs();
     }

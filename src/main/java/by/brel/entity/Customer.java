@@ -36,4 +36,15 @@ public class Customer {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Balance> balances;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "idCustomer=" + idCustomer +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateBirth='" + dateBirth + '\'' +
+                ", mobilePhone='" + mobilePhone + '\'' +
+                '}';
+    }
 }

@@ -1,5 +1,6 @@
 package by.brel.service.impl;
 
+import by.brel.aspect.LogExecutionTime;
 import by.brel.dao.BalanceDAO;
 import by.brel.entity.Balance;
 import by.brel.service.BalanceService;
@@ -24,6 +25,7 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     @Transactional
+    @LogExecutionTime
     public List<Balance> getAllBalances() {
         return balanceDAO.getAllBalances();
     }
@@ -31,6 +33,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "balances")
+    @LogExecutionTime
     public List<Balance> getAllBalances(int page) {
         return balanceDAO.getAllBalances(page);
     }
@@ -45,6 +48,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     @Transactional
     @CacheEvict(cacheNames = "balances", allEntries = true)
+    @LogExecutionTime
     public void saveBalance(Balance balance) {
         balanceDAO.saveBalance(balance);
     }
@@ -62,6 +66,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "balances")
+    @LogExecutionTime
     public int getCountAllBalances() {
         return balanceDAO.getCountAllBalances();
     }

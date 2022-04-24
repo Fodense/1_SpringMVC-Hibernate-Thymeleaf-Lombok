@@ -1,5 +1,6 @@
 package by.brel.service.impl;
 
+import by.brel.aspect.LogExecutionTime;
 import by.brel.dao.CustomerDAO;
 import by.brel.entity.Customer;
 import by.brel.service.CustomerService;
@@ -24,6 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
+    @LogExecutionTime
     public List<Customer> getAllCustomers() {
         return customerDAO.getAllCustomers();
     }
@@ -31,6 +33,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "customers")
+    @LogExecutionTime
     public List<Customer> getAllCustomers(int page) {
         return customerDAO.getAllCustomers(page);
     }
@@ -45,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @CacheEvict(cacheNames = "customers", allEntries = true)
+    @LogExecutionTime
     public void saveCustomer(Customer customer) {
         customerDAO.saveCustomer(customer);
     }
@@ -62,6 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     @Transactional
     @Cacheable(cacheNames = "customers")
+    @LogExecutionTime
     public int getCountAllCustomers() {
         return customerDAO.getCountAllCustomers();
     }

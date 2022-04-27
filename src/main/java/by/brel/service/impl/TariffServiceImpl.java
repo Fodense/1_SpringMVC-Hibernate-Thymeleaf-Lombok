@@ -47,7 +47,7 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
-    @CacheEvict(cacheNames = "tariffs", allEntries = true)
+    @CacheEvict(cacheNames = {"tariffs", "tariff", "balances"}, allEntries = true)
     @LogExecutionTime
     public void saveTariff(Tariff tariff) {
         tariffDAO.saveTariff(tariff);
@@ -57,7 +57,7 @@ public class TariffServiceImpl implements TariffService {
     @Transactional
     @Caching(evict = {
             @CacheEvict(cacheNames = "tariff", key = "#id"),
-            @CacheEvict(cacheNames = "tariffs", allEntries = true)
+            @CacheEvict(cacheNames = {"tariffs", "tariff", "balances"}, allEntries = true)
     })
     public void deleteTariff(long id) {
         tariffDAO.deleteTariff(id);

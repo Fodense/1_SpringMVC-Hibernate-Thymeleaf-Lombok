@@ -47,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional
-    @CacheEvict(cacheNames = "customers", allEntries = true)
+    @CacheEvict(cacheNames = {"customers", "customer", "balances"}, allEntries = true)
     @LogExecutionTime
     public void saveCustomer(Customer customer) {
         customerDAO.saveCustomer(customer);
@@ -57,7 +57,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Transactional
     @Caching(evict = {
                     @CacheEvict(cacheNames = "customer", key = "#id"),
-                    @CacheEvict(cacheNames = "customers", allEntries = true)
+                    @CacheEvict(cacheNames = {"customers", "customer", "balances"}, allEntries = true)
     })
     public void deleteCustomer(long id) {
         customerDAO.deleteCustomer(id);

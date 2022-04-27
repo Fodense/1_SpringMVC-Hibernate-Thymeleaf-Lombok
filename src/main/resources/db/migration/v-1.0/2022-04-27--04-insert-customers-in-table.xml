@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1.1" author="Uladzislau Brel">
+        <tagDatabase tag="insert customers"/>
+    </changeSet>
+
+    <changeSet id="1.1.1" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Syrnikov', 'Peter', '1968-12-13', '+375295841326');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Petrov', 'Ivan', '1990-10-23', '+375332563485');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Gornikov', 'Nikolay', '1983-09-12', '+375332548796');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Koluev', 'Semyon', '1995-11-23', '+375293654112');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Saluyan', 'Gregory', '1986-05-05', '+375295846952');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Vasilyeva', 'Olga', '1967-02-15', '+375442152422');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Golovina', 'Ekaterina', '1990-05-25', '+375293252332');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Kuznetsov', 'Maxim', '1989-05-13', '+375295321232');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Fedorova', 'Sofia', '1995-03-15', '+375293412322');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Evdokimova', 'Anna', '1974-08-21', '+375443523523');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Tarasov', 'Vladimir', '1995-07-29', '+375293242354');
+            insert into subscription.customers (first_name, last_name, date_birth, mobile_phone) values ('Kuznetsova', 'Yana', '1993-07-29', '+375293242354');
+        </sql>
+
+        <rollback>
+            <sql>DELETE FROM subscription.customers</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

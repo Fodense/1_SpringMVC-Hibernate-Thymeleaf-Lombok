@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2" author="Uladzislau Brel">
+        <createTable tableName="tariffs">
+            <column name="id_tariff" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(45)"/>
+            <column name="price" type="decimal"/>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="tariffs"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="2.1" author="Uladzislau Brel">
+        <tagDatabase tag="insert tariffs" />
+    </changeSet>
+
+    <changeSet id="2.1.1" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.tariffs (title, price) values ('Family', 150);
+            insert into subscription.tariffs (title, price) values ('Business', 250);
+            insert into subscription.tariffs (title, price) values ('Unlimited', 24);
+            insert into subscription.tariffs (title, price) values ('Standard', 12);
+            insert into subscription.tariffs (title, price) values ('Children', 8);
+        </sql>
+
+        <rollback>
+            <sql>DELETE FROM subscription.tariffs</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

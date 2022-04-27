@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="1" author="Uladzislau Brel">
+        <createTable tableName="customers">
+            <column name="id_customer" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(45)"/>
+            <column name="last_name" type="varchar(45)"/>
+            <column name="date_birth" type="varchar(45)"/>
+            <column name="mobile_phone" type="varchar(45)"/>
+         </createTable>
+
+        <rollback>
+            <dropTable tableName="customers"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

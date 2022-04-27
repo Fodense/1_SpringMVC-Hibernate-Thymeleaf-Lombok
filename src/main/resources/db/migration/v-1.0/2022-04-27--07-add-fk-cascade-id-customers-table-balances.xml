@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="4" author="Uladzislau Brel">
+        <tagDatabase tag="add fk cascade"/>
+    </changeSet>
+
+    <changeSet id="4.1" author="Uladzislau Brel">
+        <sql>alter table balances drop foreign key fk_customers</sql>
+    </changeSet>
+
+    <changeSet id="4.2" author="Uladzislau Brel">
+        <addForeignKeyConstraint baseTableName="balances" baseColumnNames="id_customer"
+                                 constraintName="fk_customers"
+                                 referencedTableName="customers"
+                                 referencedColumnNames="id_customer"
+                                 onUpdate="CASCADE"
+                                 onDelete="CASCADE"
+        />
+
+        <rollback>
+            <sql>
+                alter table balances
+                add constraint fk_customers foreign key (id_customer)
+                references customers (id_customer)
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

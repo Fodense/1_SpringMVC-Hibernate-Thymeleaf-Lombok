@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="9" author="Uladzislau Brel">
+        <tagDatabase tag="create fk_key for authorities"/>
+    </changeSet>
+
+    <changeSet id="9.1" author="Uladzislau Brel">
+        <sql>
+            alter table authorities drop foreign key fk_users
+        </sql>
+    </changeSet>
+    
+    <changeSet id="9.2" author="Uladzislau Brel">
+        <addForeignKeyConstraint baseTableName="authorities"
+                                 baseColumnNames="username"
+                                 constraintName="fk_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="username"
+                                 onUpdate="CASCADE"
+        />
+
+        <rollback>
+            <sql>
+                alter table authorities
+                add constraint fk_users foreign key (username)
+                references users (username)
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

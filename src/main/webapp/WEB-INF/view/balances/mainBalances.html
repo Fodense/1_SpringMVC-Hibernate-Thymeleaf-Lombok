@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Balances</title>
@@ -22,7 +20,7 @@
         <th>Customer</th>
         <th>Tariff</th>
         <th>Balance</th>
-        <th sec:authorize="hasRole('MANAGER')" colspan="2">Operations</th>
+        <th colspan="2">Operations</th>
     </tr>
 
     <tr th:each="balance : ${balances}">
@@ -30,12 +28,12 @@
         <td th:text="${balance.customer.firstName} + ' ' + ${balance.customer.lastName}"></td>
         <td th:text="${balance.tariff.title}"></td>
         <td th:text="${balance.balance}"></td>
-        <td sec:authorize="hasRole('MANAGER')">
+        <td>
             <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
                 <button class="color button">Update</button>
             </a>
         </td>
-        <td sec:authorize="hasRole('MANAGER')">
+        <td>
             <a th:href="@{/balances/delete/{id}(id=${balance.idBalance})}">
                 <button class="color red button">Delete</button>
             </a>
@@ -59,11 +57,9 @@
     </ul>
 </div>
 
-<div sec:authorize="hasRole('MANAGER')">
-    <input class="color green button" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
+<input class="color green button" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
 <br>
 <br>
-</div>
 
 <input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>

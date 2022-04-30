@@ -10,4 +10,5 @@
     <include file="db/migration/v-1.1/2022-04-30--03-initial-shema-authorities.xml"/>
     <include file="db/migration/v-1.1/2022-04-30--04-insert-authorities-in-table.xml"/>
     <include file="db/migration/v-1.1/2022-04-30--05-fix-name-table-column-in-table-authorities.xml"/>
+    <include file="db/migration/v-1.1/2022-04-30--06-create-fk-for-table-authorities.xml"/>
 </databaseChangeLog>

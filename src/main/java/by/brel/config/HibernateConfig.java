@@ -1,6 +1,7 @@
 package by.brel.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -57,5 +58,14 @@ public class HibernateConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
         return transactionManager;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/migration/master.xml");
+        liquibase.setDataSource(dataSource());
+
+        return liquibase;
     }
 }

@@ -195,18 +195,6 @@
                 </configuration>
             </plugin>
 
-            <plugin>
-                <groupId>org.liquibase</groupId>
-                <artifactId>liquibase-maven-plugin</artifactId>
-                <version>4.9.1</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3306/subscription</url>
-                    <username>root</username>
-                    <password>111111</password>
-                    <changeLogFile>./src/main/resources/db/migration/master.xml</changeLogFile>
-                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>

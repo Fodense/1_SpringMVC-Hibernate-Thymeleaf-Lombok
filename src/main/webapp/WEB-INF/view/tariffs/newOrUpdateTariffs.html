@@ -6,8 +6,12 @@
 
     <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
     <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/dropDown.css}" type="text/css">
 </head>
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Tariff info</h2>
 
 <form th:action="@{/tariffs/save}" th:object="${tariff}" th:method="post">

@@ -1,0 +1,13 @@
+ul {
+    list-style: none;
+    position: relative;
+}
+
+ul li {
+    display:inline-block;
+}
+
+ul a {
+    display:block;
+    text-decoration:none;
+}

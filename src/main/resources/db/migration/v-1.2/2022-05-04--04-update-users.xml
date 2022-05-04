@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="13" author="Uladzislau Brel">
+        <tagDatabase tag="update users"/>
+    </changeSet>
+
+    <changeSet id="13.1" author="Uladzislau Brel">
+        <sql>
+            update subscription.users set password = '$2a$12$TBjJBWSAgeKG1QVLKzNC2ec1hARjrftf3lx1J8rhpi0R66fNcZKFq' where username = 'vlad';
+            update subscription.users set password = '$2a$12$XpBWKowjaFCh0JmaJEYij.3e9ynp5IS9mgnKQ/Npl4h73L39IfKX2' where username = 'ivan';
+            update subscription.users set password = '$2a$12$Oxv8BhfwR/tEmT1n7WPzmOiFeYqMXcrsuFPSNr/08OhCJYMevAu0C' where username = 'vlad90';
+        </sql>
+
+        <rollback>
+            <sql>
+                update subscription.users set password = '{bcrypt}$2a$12$TBjJBWSAgeKG1QVLKzNC2ec1hARjrftf3lx1J8rhpi0R66fNcZKFq' where username = 'vlad';
+                update subscription.users set password = '{bcrypt}$2a$12$XpBWKowjaFCh0JmaJEYij.3e9ynp5IS9mgnKQ/Npl4h73L39IfKX2' where username = 'ivan';
+                update subscription.users set password = '{bcrypt}$2a$12$Oxv8BhfwR/tEmT1n7WPzmOiFeYqMXcrsuFPSNr/08OhCJYMevAu0C' where username = 'vlad90';
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

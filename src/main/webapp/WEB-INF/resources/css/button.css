@@ -38,3 +38,23 @@
 .button.red:active{
     background: #c43c35;
 }
+
+/* */
+
+.button.blue{
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.button.blue:hover{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc
+}
+
+.button.blue:active{
+    background-color: #0069d9;
+    background-image: none;
+    border-color: #0062cc
+}

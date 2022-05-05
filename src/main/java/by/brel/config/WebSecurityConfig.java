@@ -35,8 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/tariffs/new").hasRole("MANAGER")
                 .antMatchers("/balances/new").hasRole("MANAGER")
                 .and()
-                .csrf().disable()
-                .formLogin()
+                .formLogin().loginPage("/login")
+                .usernameParameter("login")
                 .permitAll();
     }
 

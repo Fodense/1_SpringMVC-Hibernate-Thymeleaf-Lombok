@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Tariffs</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Tariffs All</h2>
 
 <table class="table">
@@ -19,19 +20,19 @@
         <th>ID</th>
         <th>Title</th>
         <th>Price</th>
-        <th colspan="2">Operations</th>
+        <th sec:authorize="hasRole('MANAGER')" colspan="2">Operations</th>
     </tr>
 
     <tr th:each="tariff : ${tariffs}">
         <td th:text="${tariff.idTariff}"></td>
         <td th:text="${tariff.title}"></td>
         <td th:text="${tariff.price}"></td>
-        <td>
+        <td sec:authorize="hasRole('MANAGER')">
             <a th:href="@{/tariffs/update/{id}(id=${tariff.idTariff})}">
-                <button class="color button">Update</button>
+                <button class="color blue button">Update</button>
             </a>
         </td>
-        <td>
+        <td sec:authorize="hasRole('MANAGER')">
             <a th:href="@{/tariffs/delete/{id}(id=${tariff.idTariff})}">
                 <button class="color red button">Delete</button>
             </a>
@@ -40,7 +41,7 @@
 
 </table>
 
-<div class="divCentre">
+<div class="div-centre">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"
@@ -56,9 +57,11 @@
     </ul>
 </div>
 
-<input class="color green button" type="button" value="Add new Tariffs" onclick="window.location.href = '/tariffs/new'">
+<div sec:authorize="hasRole('MANAGER')">
+    <input class="color green button" type="button" value="Add new Tariffs" onclick="window.location.href = '/tariffs/new'">
 <br>
 <br>
+</div>
 
 <input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>

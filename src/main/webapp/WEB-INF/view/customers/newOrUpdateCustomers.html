@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <title>Customer info</title>
 
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Customer info</h2>
 
 <form th:action="@{/customers/save}" th:object="${customer}" th:method="post">

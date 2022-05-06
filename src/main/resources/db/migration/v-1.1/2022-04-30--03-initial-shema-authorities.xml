@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="7" author="Uladzislau Brel">
+        <tagDatabase tag="create table authorities"/>
+    </changeSet>
+    
+    <changeSet id="7.1" author="Uladzislau Brel">
+        <createTable tableName="Authorities">
+            <column name="username" type="varchar(15)">
+                <constraints nullable="false" foreignKeyName="fk_users" referencedTableName="users" referencedColumnNames="username"/>
+            </column>
+            <column name="authorities" type="varchar(25)"/>
+        </createTable>
+        
+        <rollback>
+            <dropTable tableName="authorities"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

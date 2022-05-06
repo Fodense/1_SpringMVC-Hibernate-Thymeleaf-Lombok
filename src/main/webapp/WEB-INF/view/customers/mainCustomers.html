@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      lang="ru">
 <head>
     <meta charset="UTF-8">
     <title>Customers</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Customers Main View</h2>
 
 <table class="table">
@@ -21,7 +22,7 @@
         <th>Surname</th>
         <th>Date of birth</th>
         <th>Phone number</th>
-        <th colspan="2">Operations</th>
+        <th sec:authorize="hasRole('MANAGER')" colspan="2">Operations</th>
     </tr>
 
     <tr th:each="customer : ${customers}">
@@ -30,12 +31,12 @@
         <td th:text="${customer.lastName}"></td>
         <td th:text="${customer.dateBirth}"></td>
         <td th:text="${customer.mobilePhone}"></td>
-        <td>
+        <td sec:authorize="hasRole('MANAGER')">
             <a th:href="@{/customers/update/{id}(id=${customer.idCustomer})}">
-                <button class="color button">Update</button>
+                <button class="color blue button">Update</button>
             </a>
         </td>
-        <td>
+        <td sec:authorize="hasRole('MANAGER')">
             <a th:href="@{/customers/delete/{id}(id=${customer.idCustomer})}">
                 <button class="color red button">Delete</button>
             </a>
@@ -43,7 +44,7 @@
     </tr>
 </table>
 
-<div class="divCentre">
+<div class="div-centre">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"
@@ -59,9 +60,11 @@
     </ul>
 </div>
 
-<input class="color green button" type="button" value="Add new Customers" onclick="window.location.href = '/customers/new'">
+<div sec:authorize="hasRole('MANAGER')">
+    <input class="color green button" type="button" value="Add new Customers" onclick="window.location.href = '/customers/new'">
 <br>
 <br>
+</div>
 
 <input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>

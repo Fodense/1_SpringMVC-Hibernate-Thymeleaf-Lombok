@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <title>Balances</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 
 <body>
+
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Balances info</h2>
 
 <table class="table">
@@ -30,7 +29,7 @@
         <td th:text="${balance.balance}"></td>
         <td>
             <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
-                <button class="color button">Update</button>
+                <button class="color blue button">Update</button>
             </a>
         </td>
         <td>
@@ -41,7 +40,7 @@
     </tr>
 </table>
 
-<div class="divCentre">
+<div class="div-centre">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"

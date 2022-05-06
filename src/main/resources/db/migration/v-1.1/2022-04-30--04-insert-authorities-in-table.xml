@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="7.2" author="Uladzislau Brel">
+        <tagDatabase tag="insert authorities"/>
+    </changeSet>
+
+    <changeSet id="7.3" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.authorities (username, authorities) value ('vlad', 'ROLE_MANAGER');
+            insert into subscription.authorities (username, authorities) value ('ivan', 'ROLE_USER');
+            insert into subscription.authorities (username, authorities) value ('vlad90', 'ROLE_USER');
+        </sql>
+
+        <rollback>
+            <sql>
+                delete from subscription.authorities
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

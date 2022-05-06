@@ -4,10 +4,7 @@
     <meta charset="UTF-8">
     <title>Index View</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/dropDown.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 <body>
 
@@ -16,10 +13,10 @@
 <h2>Start View</h2>
 <br>
 
-<div class="divCentre">
-    <input class="color button" type="button" value="Customers" onclick="window.location.href = '/customers/main'">
-    <input class="color button" type="button" value="Tariffs" onclick="window.location.href = '/tariffs/main'">
-    <input sec:authorize="hasRole('MANAGER')" class="color button" type="button" value="Balances" onclick="window.location.href = '/balances/main'">
+<div class="div-centre">
+    <input class="color blue button" type="button" value="Customers" onclick="window.location.href = '/customers/main'">
+    <input class="color blue button" type="button" value="Tariffs" onclick="window.location.href = '/tariffs/main'">
+    <input sec:authorize="hasRole('MANAGER')" class="color blue button" type="button" value="Balances" onclick="window.location.href = '/balances/main'">
 </div>
 </body>
 </html>

@@ -3,14 +3,22 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       lang="en">
 <body>
-    <ul th:fragment="header">
-        <li sec:authentication="name"></li>
+<ul id="navbar" th:fragment="header">
+    <li>
+        <a href="/">Subscription</a>
+    </li>
+    <li>
+        <form>
+            <input type="text" name="keyword" value>
+            <input type="submit" value="Find">
+        </form>
+    </li>
 
-        <li sec:authentication="principal.authorities"></li>
-
-        <li>
-            <a href="/login?logout">Log Out</a>
-        </li>
-    </ul>
+    <li class="link">
+        <a href="#" sec:authentication="name"></a>
+        <a class="role" sec:authentication="principal.authorities"></a>
+        <a class="logout" href="/login?logout">Log Out</a>
+    </li>
+</ul>
 </body>
 </html>

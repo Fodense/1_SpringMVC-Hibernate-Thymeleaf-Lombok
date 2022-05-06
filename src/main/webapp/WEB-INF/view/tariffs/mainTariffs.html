@@ -6,12 +6,7 @@
     <meta charset="UTF-8">
     <title>Tariffs</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/dropDown.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 
 <body>
@@ -34,7 +29,7 @@
         <td th:text="${tariff.price}"></td>
         <td sec:authorize="hasRole('MANAGER')">
             <a th:href="@{/tariffs/update/{id}(id=${tariff.idTariff})}">
-                <button class="color button">Update</button>
+                <button class="color blue button">Update</button>
             </a>
         </td>
         <td sec:authorize="hasRole('MANAGER')">
@@ -46,7 +41,7 @@
 
 </table>
 
-<div class="divCentre">
+<div class="div-centre">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"

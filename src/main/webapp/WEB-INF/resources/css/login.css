@@ -6,7 +6,7 @@
     width: 100%;
 }
 
-.form-login {
+.form {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
@@ -33,9 +33,3 @@
     line-height: 1.25;
     border-radius: .25rem;
 }
-
-.btn-block {
-    display: block;
-    width: 100%;
-}
-

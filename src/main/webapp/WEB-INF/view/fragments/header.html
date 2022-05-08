@@ -4,13 +4,15 @@
       lang="en">
 <body>
 <ul id="navbar" th:fragment="header">
-    <li>
-        <a href="/">Subscription</a>
+    <li class="logo">
+        <a href="/">
+            <b>Subscription</b>
+        </a>
     </li>
-    <li>
+    <li class="search">
         <form>
-            <input type="text" name="keyword" value>
-            <input type="submit" value="Find">
+            <input class="search-input" type="text" name="keyword" value placeholder="Search">
+            <input class="color blue button" type="submit" value="Find">
         </form>
     </li>
 

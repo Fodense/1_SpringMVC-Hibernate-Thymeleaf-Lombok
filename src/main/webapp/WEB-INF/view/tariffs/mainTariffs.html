@@ -10,10 +10,9 @@
 </head>
 
 <body>
-
 <header th:insert="~{/fragments/header :: header}"></header>
 
-<h2>Tariffs All</h2>
+<h2>Tariffs</h2>
 
 <table class="table">
     <tr>
@@ -41,7 +40,7 @@
 
 </table>
 
-<div class="div-centre">
+<div class="div-centre div-margin-bottom">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"
@@ -57,12 +56,9 @@
     </ul>
 </div>
 
-<div sec:authorize="hasRole('MANAGER')">
-    <input class="color green button" type="button" value="Add new Tariffs" onclick="window.location.href = '/tariffs/new'">
-<br>
-<br>
+<div class="container container-btn div-centre">
+    <input class="color green button form-btn btn-block" sec:authorize="hasRole('MANAGER')" type="button" value="Add new Tariffs" onclick="window.location.href = '/tariffs/new'">
+    <input class="color button form-btn btn-block" type="button" value="Back" onclick="window.location.href = '/'">
 </div>
-
-<input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
 </body>
 </html>

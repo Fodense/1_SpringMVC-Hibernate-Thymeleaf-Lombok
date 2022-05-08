@@ -10,8 +10,7 @@
 <h2>Please Log In</h2>
 
 <div class="container div-centre">
-
-    <form class="form-login" th:action="@{/login}" method="post">
+    <form class="form" th:action="@{/login}" method="post">
         <div class="alert alert-danger" th:if="${param.error}">
             Invalid username and password
         </div>

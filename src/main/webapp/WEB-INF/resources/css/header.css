@@ -59,7 +59,23 @@
     background-color: #992e28;
 }
 
-#navbar form {
-    display: block;
-    padding: 6px;
+#navbar input {
+    padding: .25rem .75rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+
+#navbar .logo {
+    width: 15%;
+}
+
+#navbar .search-input {
+    width: 350px;
+}
+
+#navbar .search {
+    width: 37%;
+    text-align: center;
 }

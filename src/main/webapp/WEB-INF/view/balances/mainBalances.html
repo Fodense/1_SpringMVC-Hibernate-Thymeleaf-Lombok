@@ -39,7 +39,7 @@
     </tr>
 </table>
 
-<div class="div-centre">
+<div class="div-centre div-margin-bottom">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"
@@ -55,10 +55,9 @@
     </ul>
 </div>
 
-<input class="color green button" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
-<br>
-<br>
-
-<input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
+<div class="container container-btn div-centre">
+    <input class="color green button form-btn btn-block" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
+    <input class="color button form-btn btn-block" type="button" value="Back" onclick="window.location.href = '/'">
+</div>
 </body>
 </html>

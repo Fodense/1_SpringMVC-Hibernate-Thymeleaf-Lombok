@@ -9,9 +9,10 @@
             <b>Subscription</b>
         </a>
     </li>
+
     <li class="search">
-        <form>
-            <input class="search-input" type="text" name="keyword" value placeholder="Search">
+        <form th:action="@{/search}" th:method="get">
+            <input class="search-input" type="text" name="keyword" value placeholder="Search tariffs">
             <input class="color blue button" type="submit" value="Find">
         </form>
     </li>

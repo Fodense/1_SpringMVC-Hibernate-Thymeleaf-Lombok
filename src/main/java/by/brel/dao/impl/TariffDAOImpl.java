@@ -52,6 +52,18 @@ public class TariffDAOImpl implements TariffDAO {
     }
 
     @Override
+    public List<Tariff> findTariffByTitle(String title) {
+        Session session = sessionFactory.getCurrentSession();
+
+        Query<Tariff> query = session.createQuery("from Tariff where title like :title", Tariff.class);
+        query.setParameter("title", title);
+
+        List<Tariff> tariffList = query.getResultList();
+
+        return tariffList;
+    }
+
+    @Override
     public void saveTariff(Tariff tariff) {
         Session session = sessionFactory.getCurrentSession();
 
@@ -72,5 +84,14 @@ public class TariffDAOImpl implements TariffDAO {
         Session session = sessionFactory.getCurrentSession();
 
         return session.createQuery("select count(*) from Tariff", Number.class).getSingleResult().intValue();
+    }
+
+    @Override
+    public int getCountAllTariffsSearch(String keyword) {
+        Session session = sessionFactory.getCurrentSession();
+
+        int count = session.createQuery("select count(*) from Tariff where title like '" + keyword + "'", Number.class).getSingleResult().intValue();
+
+        return count;
     }
 }

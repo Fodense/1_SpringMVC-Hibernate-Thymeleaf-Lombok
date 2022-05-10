@@ -1,5 +1,3 @@
-# 1_SpringMVC-Hibernate-Thymeleaf-Lombok-Mockito-Jackson-Caffeine-AOP-Liquibase
-
-Subscription
+# Subscription
 
 SpringMVC-Spring_Security-Hibernate-Thymeleaf-Lombok-Mockito-Jackson-Caffeine-AOP-Liquibase

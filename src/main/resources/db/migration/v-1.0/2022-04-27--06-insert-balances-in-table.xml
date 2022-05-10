@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="3.1" author="Uladzislau Brel">
+        <tagDatabase tag="insert balances" />
+    </changeSet>
+
+    <changeSet id="3.1.1" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.balances (id_customer, id_tariff, balance) values (1, 1, 30);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (1, 4, 10);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (2, 2, 3);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (3, 3, 5);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (4, 3, -2);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (7, 4, -150);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (8, 5, -13);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (9, 1, 221);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (10, 1, 14.2);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (11, 1, 1423.4);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (12, 1, 251.15);
+            insert into subscription.balances (id_customer, id_tariff, balance) values (11, 4, 3000);
+        </sql>
+
+        <rollback>
+            <sql>DELETE FROM subscription.balances</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

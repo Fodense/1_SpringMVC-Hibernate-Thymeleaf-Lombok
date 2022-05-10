@@ -1,0 +1,15 @@
+.div-centre {
+    text-align: center;
+}
+
+.div-inline-block {
+    display: inline-block;
+}
+
+.div-float-right {
+    float: right;
+}
+
+.div-margin-bottom {
+    margin-bottom: 16px;
+}

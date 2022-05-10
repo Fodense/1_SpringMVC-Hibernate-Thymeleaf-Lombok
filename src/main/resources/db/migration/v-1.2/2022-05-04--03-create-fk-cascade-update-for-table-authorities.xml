@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="12" author="Uladzislau Brel">
+        <tagDatabase tag="fk for table authorities and roles"/>
+    </changeSet>
+
+    <changeSet id="12.1" author="Uladzislau Brel">
+        <addForeignKeyConstraint baseTableName="authorities"
+                                 baseColumnNames="authority"
+                                 constraintName="fk_roles"
+                                 referencedTableName="roles"
+                                 referencedColumnNames="role"
+                                 onUpdate="CASCADE"
+                                 onDelete="CASCADE"
+        />
+
+        <rollback>
+            <sql>
+                alter table authorities
+                add constraint fk_roles foreign key (authority)
+                references roles (id_role)
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="11" author="Uladzislau Brel">
+        <tagDatabase tag="insert new role in table"/>
+    </changeSet>
+
+    <changeSet id="11.1" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.roles (role) values ('ROLE_USER');
+            insert into subscription.roles (role) values ('ROLE_MANAGER');
+            insert into subscription.roles (role) values ('ROLE_ADMIN');
+        </sql>
+
+        <rollback>
+            <sql>
+                delete from subscription.roles
+            </sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

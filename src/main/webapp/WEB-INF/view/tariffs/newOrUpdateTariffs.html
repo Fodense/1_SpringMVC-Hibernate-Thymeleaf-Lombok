@@ -4,32 +4,33 @@
     <meta charset="UTF-8">
     <title>Tariff info</title>
 
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/form_table.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
+
 <body>
+<header th:insert="~{/fragments/header :: header}"></header>
+
 <h2>Tariff info</h2>
 
-<form th:action="@{/tariffs/save}" th:object="${tariff}" th:method="post">
+<div class="container div-centre">
+    <form class="form" th:action="@{/tariffs/save}" th:object="${tariff}" th:method="post">
 
-    <input type="hidden" th:field="*{idTariff}" id="idTariff">
+        <input type="hidden" th:field="*{idTariff}" id="idTariff">
 
-    <table class="form_table">
-        <tr>
-            <td><label for="title">Title</label></td>
-            <td><input type="text" th:field="*{title}" id="title"></td>
-        </tr>
-        <tr>
-            <td><label for="price">Price</label></td>
-            <td><input type="text" th:field="*{price}" id="price"></td>
-        </tr>
-    </table>
-    <br>
+        <table class="form_table">
+            <tr>
+                <td><label for="title">Title</label></td>
+                <td><input type="text" th:field="*{title}" id="title"></td>
+            </tr>
+            <tr>
+                <td><label for="price">Price</label></td>
+                <td><input type="text" th:field="*{price}" id="price"></td>
+            </tr>
+        </table>
 
-    <input class="color green button" type="submit" value="Save">
-</form>
-<br>
-
-<input class="color button" type="button" value="Back" onclick="window.location.href = '/tariffs/main'">
+        <input class="color green button form-btn btn-block" type="submit" value="Save">
+        <input class="color button form-btn btn-block" type="button" value="Back" onclick="window.location.href = '/tariffs/main'">
+    </form>
+</div>
 </body>
 </html>

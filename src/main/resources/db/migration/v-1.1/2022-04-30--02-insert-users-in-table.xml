@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="6.2" author="Uladzislau Brel">
+        <tagDatabase tag="insert users"/>
+    </changeSet>
+
+    <changeSet id="6.3" author="Uladzislau Brel">
+        <sql>
+            insert into subscription.users (username, password, enabled) value ('vlad', '{bcrypt}$2a$12$TBjJBWSAgeKG1QVLKzNC2ec1hARjrftf3lx1J8rhpi0R66fNcZKFq', 1);
+            insert into subscription.users (username, password, enabled) value ('ivan', '{bcrypt}$2a$12$XpBWKowjaFCh0JmaJEYij.3e9ynp5IS9mgnKQ/Npl4h73L39IfKX2', 0);
+            insert into subscription.users (username, password, enabled) value ('vlad90', '{bcrypt}$2a$12$Oxv8BhfwR/tEmT1n7WPzmOiFeYqMXcrsuFPSNr/08OhCJYMevAu0C', 1);
+        </sql>
+
+        <rollback>
+            <sql>delete from subscription.users</sql>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

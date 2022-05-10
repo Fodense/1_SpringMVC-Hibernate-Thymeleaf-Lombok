@@ -1,6 +1,7 @@
 package by.brel.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import liquibase.integration.spring.SpringLiquibase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -43,6 +44,7 @@ public class HibernateConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.setProperty("hibernate.cache.use_second_level_cache", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
         properties.setProperty("hibernate.cache.region.factory_class", "org.hibernate.cache.ehcache.EhCacheRegionFactory");
 
         localSessionFactoryBean.setHibernateProperties(properties);
@@ -56,5 +58,14 @@ public class HibernateConfig {
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
         return transactionManager;
+    }
+
+    @Bean
+    public SpringLiquibase liquibase() {
+        SpringLiquibase liquibase = new SpringLiquibase();
+        liquibase.setChangeLog("classpath:db/migration/master.xml");
+        liquibase.setDataSource(dataSource());
+
+        return liquibase;
     }
 }

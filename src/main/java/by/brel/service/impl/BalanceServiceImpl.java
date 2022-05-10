@@ -47,7 +47,7 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     @Transactional
-    @CacheEvict(cacheNames = "balances", allEntries = true)
+    @CacheEvict(cacheNames = {"balances", "balance"}, allEntries = true)
     @LogExecutionTime
     public void saveBalance(Balance balance) {
         balanceDAO.saveBalance(balance);
@@ -57,7 +57,7 @@ public class BalanceServiceImpl implements BalanceService {
     @Transactional
     @Caching(evict = {
             @CacheEvict(cacheNames = "balance", key = "#id"),
-            @CacheEvict(cacheNames = "balances", allEntries = true)
+            @CacheEvict(cacheNames = {"balances", "balance"}, allEntries = true)
     })
     public void deleteBalance(long id) {
         balanceDAO.deleteBalance(id);

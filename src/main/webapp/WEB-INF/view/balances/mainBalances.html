@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <title>Balances</title>
 
-    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/table.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/button.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/pagination/pagination.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{/css/divCentre.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/cumulative_style.css}" type="text/css">
 </head>
 
 <body>
-<h2>Balances info</h2>
+<header th:insert="~{/fragments/header :: header}"></header>
+
+<h2>Balances</h2>
 
 <table class="table">
     <tr>
@@ -27,10 +25,10 @@
         <td th:text="${balance.idBalance}"></td>
         <td th:text="${balance.customer.firstName} + ' ' + ${balance.customer.lastName}"></td>
         <td th:text="${balance.tariff.title}"></td>
-        <td th:text="${balance.balance}"></td>
+        <td th:text="${balance.balance}" th:classappend="${balance.balance < 0} ? background_color_indianred : ''"></td>
         <td>
             <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
-                <button class="color button">Update</button>
+                <button class="color blue button">Update</button>
             </a>
         </td>
         <td>
@@ -41,7 +39,7 @@
     </tr>
 </table>
 
-<div class="divCentre">
+<div class="div-centre div-margin-bottom">
     <ul class="pagination">
         <li th:each="pageNumber : ${#numbers.sequence(1, countPages)}">
             <a class="active"
@@ -57,10 +55,9 @@
     </ul>
 </div>
 
-<input class="color green button" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
-<br>
-<br>
-
-<input class="color button" type="button" value="Back" onclick="window.location.href = '/'">
+<div class="container container-btn div-centre">
+    <input class="color green button form-btn btn-block" type="button" value="Add new Balance" onclick="window.location.href = '/balances/new'">
+    <input class="color button form-btn btn-block" type="button" value="Back" onclick="window.location.href = '/'">
+</div>
 </body>
 </html>

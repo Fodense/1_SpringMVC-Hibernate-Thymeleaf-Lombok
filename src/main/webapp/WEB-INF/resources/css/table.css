@@ -1,6 +1,6 @@
 .table {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     border: 1px solid #dddddd;
     border-collapse: collapse;
 }
@@ -15,4 +15,8 @@
 .table td {
     border: 1px solid #dddddd;
     padding: 5px;
+}
+
+.table .background_color_indianred {
+    background-color: indianred;
 }

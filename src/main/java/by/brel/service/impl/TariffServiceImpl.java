@@ -79,7 +79,7 @@ public class TariffServiceImpl implements TariffService {
 
     @Override
     @Transactional
-    public int getCountAllTariffsSearch(String keyword) {
-        return tariffDAO.getCountAllTariffsSearch(keyword);
+    public long getCountAllTariffsSearch(String keyWord) {
+        return tariffDAO.getCountAllTariffsSearch(keyWord);
     }
 }

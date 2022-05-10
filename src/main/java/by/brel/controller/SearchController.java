@@ -21,12 +21,12 @@ public class SearchController {
     }
 
     @GetMapping("/search")
-    public String getResultSearch(@RequestParam(value = "keyword", required = false) String keyword,
+    public String getResultSearch(@RequestParam(value = "keyword", required = false) String keyWord,
                                   @RequestParam(defaultValue = "1") int page,
                                   Model model) {
-        List<Tariff> tariffList = tariffService.findTariffByTitle(keyword.trim());
+        List<Tariff> tariffList = tariffService.findTariffByTitle(keyWord.trim());
 
-        long countAllTariffs = tariffService.getCountAllTariffsSearch(keyword);
+        long countAllTariffs = tariffService.getCountAllTariffsSearch(keyWord);
         long countPages = (countAllTariffs + 9) / 10;
 
         model.addAttribute("page", page);

@@ -19,5 +19,5 @@ public interface TariffService {
 
     int getCountAllTariffs();
 
-    int getCountAllTariffsSearch(String keyword);
+    long getCountAllTariffsSearch(String keyWord);
 }

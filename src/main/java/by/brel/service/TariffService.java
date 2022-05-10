@@ -11,9 +11,13 @@ public interface TariffService {
 
     Tariff findTariffById(long id);
 
+    List<Tariff> findTariffByTitle(String title);
+
     void saveTariff(Tariff tariff);
 
     void deleteTariff(long id);
 
     int getCountAllTariffs();
+
+    long getCountAllTariffsSearch(String keyWord);
 }

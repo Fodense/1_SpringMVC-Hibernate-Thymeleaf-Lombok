@@ -25,7 +25,7 @@
         <td th:text="${balance.idBalance}"></td>
         <td th:text="${balance.customer.firstName} + ' ' + ${balance.customer.lastName}"></td>
         <td th:text="${balance.tariff.title}"></td>
-        <td th:text="${balance.balance}"></td>
+        <td th:text="${balance.balance}" th:classappend="${balance.balance < 0} ? background_color_indianred : ''"></td>
         <td>
             <a th:href="@{/balances/update/{id}(id=${balance.idBalance})}">
                 <button class="color blue button">Update</button>

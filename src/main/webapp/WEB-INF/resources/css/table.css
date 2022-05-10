@@ -16,3 +16,7 @@
     border: 1px solid #dddddd;
     padding: 5px;
 }
+
+.table .background_color_indianred {
+    background-color: indianred;
+}

@@ -10,6 +10,7 @@
 
     <logger name="org.hibernate.SQL" level="debug" />
     <logger name="org.hibernate.type" level="warn" />
+    <logger name="io.swagger.models.parameters.AbstractSerializableParameter" level="error" />
 
     <root level="info">
         <appender-ref ref="console"/>

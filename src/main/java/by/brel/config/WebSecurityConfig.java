@@ -51,16 +51,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .csrf()
-                .ignoringRequestMatchers(csrfRequestMatcher)
+                    .ignoringRequestMatchers(csrfRequestMatcher)
                 .and()
-                .authorizeRequests()
-                .antMatchers("/").hasAnyRole("USER", "MANAGER")
-                .antMatchers("/customers/new").hasRole("MANAGER")
-                .antMatchers("/tariffs/new").hasRole("MANAGER")
-                .antMatchers("/balances/new").hasRole("MANAGER")
+                    .authorizeRequests()
+                        .antMatchers("/").hasAnyRole("USER", "MANAGER")
+                        .antMatchers("/customers/new").hasRole("MANAGER")
+                        .antMatchers("/tariffs/new").hasRole("MANAGER")
+                        .antMatchers("/balances/new").hasRole("MANAGER")
+                        .antMatchers("/swagger-ui.html").hasRole("MANAGER")
                 .and()
-                .formLogin().loginPage("/login")
-                .usernameParameter("login")
+                    .formLogin()
+                        .loginPage("/login")
+                        .usernameParameter("login")
                 .permitAll();
     }
 
